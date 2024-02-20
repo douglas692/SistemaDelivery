@@ -1,0 +1,15 @@
+git branch
+git log
+git commit -m "meu commit"
+git config --global user.email -> ver nome
+git config --global user.email "nome ou email" -> adicionar
+git diff
+git status
+git add -A
+git add "nomeArquivo.php"
+git init 
+git --version
+git branch "nome da nova tela"
+git checkout "mudar o branch para a tela desejada"
+git add -A && git commit -m "Mensagem do commit"
+git reset --hard (colar o código do commit, pegar no git log)
