@@ -3,11 +3,11 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Git aulas</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>Sistema Delivery</title>
 </head>
 <body>
-	<header>
-		<h2>Aulas de Git</h2>
-	</header>
+	<h2>Olá mundo!</h2>
+
 </body>
 </html>
