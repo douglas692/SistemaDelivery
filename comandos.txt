@@ -13,3 +13,6 @@ git branch "nome da nova tela"
 git checkout "mudar o branch para a tela desejada"
 git add -A && git commit -m "Mensagem do commit"
 git reset --hard (colar o código do commit, pegar no git log) // volta no momento salvo do commit
+
+// Para criar uma chave key ssh para um novo computador
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
