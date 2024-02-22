@@ -6,3 +6,35 @@
 html, body{
 	height: 100%;
 }
+.container{
+	max-width: 960px;
+	padding: 0 2%;
+	margin: 0 auto;
+}
+.clear{
+	clear: both;
+}
+.home{
+	text-align: center;
+	background: #e53935;
+	color: white;
+	padding: 20px 0;
+}
+.home a{
+	float: right;
+}
+.home h2{
+	float: left;
+}
+section.lista-produtos{
+	margin-top: 45px;
+}
+section.lista-produtos .box-single-food{
+	float: left;
+	width: 33.3%;
+	padding: 8px 10px;
+}
+.box-single-food img{
+	width: 100%;
+	max-width: 250px;
+}
