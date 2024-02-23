@@ -18,26 +18,20 @@
 
 	<section class="lista-produtos">
 		<div class="container">
+			<?php 
+				$produtos = \deliveryModel::listarItens();
+				foreach ($produtos as $key => $value) {
+			?>
 			<div class="box-single-food">
-				<img src="<?= INCLUDE_PATH ?>images/aqui.jpg" />
-				<p>Produto 01</p>
-				<p>R$ 20,00</p>
-				<a href="<?= INCLUDE_PATH ?>?addCard=0">Adicionar ao carrinho</a>
+				<img src="<?= INCLUDE_PATH ?>images/<?= $value['0'] ?>" />
+				<p><?= $value['1'] ?></p>
+				<p>R$ <?= $value['2'] ?></p>
+				<a href="<?= INCLUDE_PATH ?>?addCard=<?php echo $key; ?>">Adicionar ao carrinho</a>
 			</div>
+			<?php
+				}
+			?>
 
-			<div class="box-single-food">
-				<img src="<?= INCLUDE_PATH ?>images/dedo.jpg" />
-				<p>Produto 02</p>
-				<p>R$ 20,00</p>
-				<a href="<?= INCLUDE_PATH ?>?addCard=1">Adicionar ao carrinho</a>
-			</div>
-
-			<div class="box-single-food">
-				<img src="<?= INCLUDE_PATH ?>images/la.jpg" />
-				<p>Produto 03</p>
-				<p>R$ 20,00</p>
-				<a href="<?= INCLUDE_PATH ?>?addCard=2">Adicionar ao carrinho</a>
-			</div>
 			<div class="clear"></div><!--clear-->
 		</div><!--container-->
 	</section><!--lista-produtos-->

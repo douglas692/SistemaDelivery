@@ -38,3 +38,7 @@ section.lista-produtos .box-single-food{
 	width: 100%;
 	max-width: 250px;
 }
+/*/Carrinho*/
+table{
+	text-align: center;
+}
