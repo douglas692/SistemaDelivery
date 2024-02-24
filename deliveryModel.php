@@ -25,5 +25,14 @@
 		public static function getItem($id){
 			return self::$itens[$id];
 		}
+		public static function getTotalPedido(){
+			$valor = 0;
+			foreach ($_SESSION['carrinho'] as $key => $value) {
+				$itemPreco = self::getItem($value)[2];
+				$valor+=$itemPreco;
+			}
+
+			return $valor;
+		}
 	}
 ?>

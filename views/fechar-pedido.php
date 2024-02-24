@@ -1,3 +1,9 @@
+<?php 
+	if(!isset($_SESSION['carrinho'])){
+		echo '<script>alert("Carrinho vazio");</script>';
+		echo '<script>location.href="'.INCLUDE_PATH.'"</script>';
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,8 +31,8 @@
 
 		<?php
 			$carrinhoItens = \deliveryModel::getItensCard();
-
-			foreach($carrinhoItens as $key => $value) {
+			if($carrinhoItens != '')
+				foreach($carrinhoItens as $key => $value) {
 				$item = deliveryModel::getItem($value);
 		?> 	
 			<tr>
@@ -42,8 +48,75 @@
 		?>
 
 	</table>
-	</div><!--container-->
-	
+	<br/>
+	<p>O total do seu pedido foi: R$ <?php echo number_format(deliveryModel::getTotalPedido(),2,',',' '); ?></p>
+	<hr/>
+	<br/>
 
+	<form method="post">
+		<p>Forma de pagamento</p>
+		<select name="opcao_pagamento">
+			<option name="cartao">Cartão</option>
+			<option name="dinheiro">Dinheiro</option>
+		</select>
+		<div class="troco" style="display:none;margin: 15px 8px;">
+			<p>Troco para quanto?</p>
+			<input type="text" name="troco" value="0">
+		</div><!--troco-->
+		<hr/>
+		<input style="cursor: pointer;" type="submit" name="acao" value="Fechar pedido">
+	</form>
+	<br/>
+
+	</div><!--container-->
+
+	<?php 
+		if(isset($_POST['acao'])){
+			if(!isset($_SESSION['carrinho'])){
+				die('Carrinho vazio!');
+			}
+
+			$opcao_pagamento = $_POST['opcao_pagamento'];
+
+			$_SESSION['opcao_pagamento'] = $opcao_pagamento;
+			$_SESSION['total'] = deliveryModel::getTotalPedido();
+
+			$troco = $_POST['troco'];
+
+			if($opcao_pagamento == 'Dinheiro'){
+
+				if($_POST['troco'] != ''){
+					$valorTroco = $_POST['troco'] - deliveryModel::getTotalPedido();
+
+					if($valorTroco > 0){
+						$_SESSION['valorTroco'] = $valorTroco;
+					}else{
+						echo '<script>alert("valor abaixo do total");</script>';
+						die('<script>location.href="'.INCLUDE_PATH.'fechar-pedido"</script>');
+					}
+
+				}else{
+					die('troco não pode ficar vazio!');
+				}
+
+			}
+
+			echo '<script>alert("Pedido realizado");</script>';
+			echo '<script>location.href="'.INCLUDE_PATH.'historico"</script>';
+		}
+	?>
+	
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script>
+		$(function(){
+			$('select').change(function(){
+				if($(this).val() == 'Dinheiro'){
+					$('.troco').show();
+				}else if($(this).val() == 'Cartão'){
+					$('.troco').hide();
+				}
+			})
+		})
+	</script>
 </body>
 </html>
